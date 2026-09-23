@@ -6,6 +6,7 @@
 /public/bundles/
 /var/
 /vendor/
+/config/certs/*.json
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
