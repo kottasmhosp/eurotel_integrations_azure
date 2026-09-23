@@ -1,0 +1,25 @@
+server {
+    listen 8080;
+    listen [::]:8080;
+
+    root /home/site/wwwroot/public;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ ^/index\.php(/|$) {
+        fastcgi_pass 127.0.0.1:9000;
+        include fastcgi_params;
+
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $document_root;
+
+        internal;
+    }
+
+    location ~ \.php$ {
+        return 404;
+    }
+}
